@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "http://gl.catch.co.nz/catch/body-toucher",
+    "url": "http://gl.catch.co.nz/catch/body-toucher"
   },
   "devDependencies": {
     "uglify-js": "2.4.15"

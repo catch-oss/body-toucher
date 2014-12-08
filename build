@@ -1,4 +1,4 @@
 #!/bin/bash
 
-OUTPUT=$(uglifyjs gush.js -m -r '$,require,exports')
-echo ";$OUTPUT" > gush.min.js
+OUTPUT=$(uglifyjs body-toucher.js -m -r '$,require,exports')
+echo ";$OUTPUT" > body-toucher.min.js
