@@ -1,0 +1,29 @@
+{
+  "name": "body-toucher",
+  "version": "0.1.0",
+  "description": "fixes some issues with old browsers' overflow support",
+  "main": "gush.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://gl.catch.co.nz/catch/body-toucher",
+  },
+  "devDependencies": {
+    "uglify-js": "2.4.15"
+  },
+  "keywords": [
+    "height",
+    "width",
+    "gush",
+    "jquery",
+    "overflow",
+    "polyfill"
+  ],
+  "author": "Aaron Latham-Ilari",
+  "license": "MIT",
+  "bugs": {
+    "url": "http://gl.catch.co.nz/catch/body-toucher/issues"
+  }
+}
