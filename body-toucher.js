@@ -26,12 +26,12 @@
                     left: 0,
                     right: 0,
                     bottom: 0,
-                    overflow: auto
-                }
+                    overflow: 'auto'
+                },
                 $wrap  = $('<div class="body"></div>');
 
-            if (hasTouch())
-                css['overflow'] = 'scroll'
+            if (hasTouch()) {
+                css['overflow'] = 'scroll';
                 css['-webkit-overflow-scrolling'] = 'touch';
             }
 
@@ -41,7 +41,7 @@
             $('.body').gush({x:false});
             $wrap.scrollTop(scrollTop);
         }
-    }
+    };
 
     $.removeBody = function() {
         if ($('body > .body').length) {
@@ -49,6 +49,6 @@
             $('body > .body').contents().unwrap();
             $(window).scrollTop(scrollTop);
         }
-    }
+    };
 
 })(jQuery, window, document);
