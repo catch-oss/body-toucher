@@ -6,19 +6,37 @@
 
     "use strict"
 
+    var hasTouch = function() {
+        try {
+            document.createEvent("TouchEvent");
+            return true;
+        } catch (e) {
+            return false;
+        }
+    };
+
     $.addBody = function() {
         //devices that parse the viewport meta tag dont respect overflow hidden on body or html
         if (!$('body > .body').length) {
-            var scrollTop = $(window).scrollTop();
-            var $wrap  = $('<div class="body"></div>').css({
-                position: 'fixed',
-                top: 0,
-                left: 0,
-                right: 0,
-                bottom: 0,
-                overflow: 'scroll',
-                '-webkit-overflow-scrolling': 'touch'
-            });
+
+            var scrollTop = $(window).scrollTop(),
+                css = {
+                    position: 'fixed',
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    overflow: auto
+                }
+                $wrap  = $('<div class="body"></div>');
+
+            if (hasTouch())
+                css['overflow'] = 'scroll'
+                css['-webkit-overflow-scrolling'] = 'touch';
+            }
+
+            $wrap.css(css);
+
             $('body').wrapInner($wrap);
             $('.body').gush({x:false});
             $wrap.scrollTop(scrollTop);
