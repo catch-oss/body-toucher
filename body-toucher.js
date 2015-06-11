@@ -15,6 +15,19 @@
         }
     };
 
+    $.scrollElem = function() {
+        return $('.body').length ? $('.body') : $(window);
+    }
+
+    $.fn.offsetTop = function() {
+
+        var $scrollElem = $.scrollElem(),
+            o = $scrollElem.is('.body') ? $scrollElem.scrollTop() : 0;
+
+        return parseFloat($(this).offset().top) + o;
+
+    }
+
     $.addBody = function() {
         //devices that parse the viewport meta tag dont respect overflow hidden on body or html
         if (!$('body > .body').length) {
