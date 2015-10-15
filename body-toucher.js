@@ -30,8 +30,16 @@
             }
         };
 
-        $.scrollElem = function() {
-            return $('.body').length ? $('.body') : $(window);
+        $.scrollElem = function(forScroll) {
+
+            // is this for position or to move the scroll point
+            forScroll = forScroll || false;
+
+            // if its for position use window
+            // else use html, body
+            return $('.body').length ? $('.body') : (
+                forScroll ? $('html,body') : $(window)
+            );
         }
 
         $.fn.offsetTop = function() {
@@ -81,4 +89,3 @@
     });
 
 }));
-
