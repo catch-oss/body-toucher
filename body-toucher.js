@@ -66,7 +66,9 @@
                     },
                     $wrap  = $('<div class="body"></div>');
 
-                if (hasTouch()) {
+                var is_safari = navigator.userAgent.indexOf('Safari') != -1 && navigator.userAgent.indexOf('Chrome') == -1;
+
+                if (is_safari || hasTouch()) {
                     css['overflow'] = 'scroll';
                     css['-webkit-overflow-scrolling'] = 'touch';
                 }
