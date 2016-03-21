@@ -22,13 +22,31 @@
     $(function() {
 
         var hasTouch = function() {
-            try {
-                document.createEvent("TouchEvent");
-                return true;
-            } catch (e) {
-                return false;
-            }
-        };
+                try {
+                    document.createEvent("TouchEvent");
+                    return true;
+                } catch (e) {
+                    return false;
+                }
+            },
+            bind = function(el, ev, fn){
+                if(window.addEventListener){ // modern browsers including IE9+
+                    el.addEventListener(ev, fn, false);
+                } else if(window.attachEvent) { // IE8 and below
+                    el.attachEvent('on' + ev, fn);
+                } else {
+                    el['on' + ev] = fn;
+                }
+            },
+            unbind = function(el, ev, fn){
+                if(window.removeEventListener){
+                    el.removeEventListener(ev, fn, false);
+                } else if(window.detachEvent) {
+                    el.detachEvent('on' + ev, fn);
+                } else {
+                    elem['on' + ev] = null;
+                }
+            };
 
         $.scrollElem = function(forScroll) {
 
@@ -66,7 +84,9 @@
                     },
                     $wrap  = $('<div class="body"></div>');
 
-                if (hasTouch()) {
+                var is_safari = navigator.userAgent.indexOf('Safari') != -1 && navigator.userAgent.indexOf('Chrome') == -1;
+
+                if (is_safari || hasTouch()) {
                     css['overflow'] = 'scroll';
                     css['-webkit-overflow-scrolling'] = 'touch';
                 }
@@ -76,6 +96,16 @@
                 $('body').wrapInner($wrap);
                 $('.body').gush({x:false});
                 $wrap.scrollTop(scrollTop);
+
+                // helps to fix a weird bug in safari
+                var psFix = function(event) {
+                    $('.body').css('height', '');
+                    $('.body').css('height', 'auto');
+                };
+                unbind(window, 'pageshow', psFix);
+                bind(window, 'pageshow', psFix);
+                unbind(window, 'load', psFix);
+                bind(window, 'load', psFix);
             }
         };
 
