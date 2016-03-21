@@ -1,6 +1,6 @@
 {
   "name": "body-toucher",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "fixes some issues with old browsers' overflow support",
   "main": "gush.js",
   "scripts": {
