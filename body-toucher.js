@@ -55,7 +55,7 @@
 
             // if its for position use window
             // else use html, body
-            return $('.body').length ? $('.body') : (
+            return $('body > .body').length ? $('body > .body') : (
                 forScroll ? $('html,body') : $(window)
             );
         }
@@ -63,7 +63,7 @@
         $.fn.offsetTop = function() {
 
             var $scrollElem = $.scrollElem(),
-                o = $scrollElem.is('.body') ? $scrollElem.scrollTop() : 0;
+                o = $scrollElem.is('body > .body') ? $scrollElem.scrollTop() : 0;
 
             return parseFloat($(this).offset().top) + o;
 
@@ -99,8 +99,8 @@
 
                 // helps to fix a weird bug in safari
                 var psFix = function(event) {
-                    $('.body').css('height', '');
-                    $('.body').css('height', 'auto');
+                    $('body > .body').css('height', '');
+                    $('body > .body').css('height', 'auto');
                 };
                 unbind(window, 'pageshow', psFix);
                 bind(window, 'pageshow', psFix);
