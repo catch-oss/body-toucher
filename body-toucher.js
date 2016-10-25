@@ -103,7 +103,7 @@
                 if (is_chrome) {
 
                     // on text input
-                    $('.body').on('focus', 'input[type=text]' function() {
+                    $('.body').on('focus', 'input', function() {
 
                         var _this = this;
                         // attach the scroll listener
