@@ -97,6 +97,31 @@
                 $('.body').gush({x:false});
                 $wrap.scrollTop(scrollTop);
 
+                // chrome autocomplete doesn't close
+                var is_chrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+
+                if (is_chrome) {
+
+                    // on text input
+                    $('.body').on('focus', 'input[type=text]' function() {
+
+                        var _this = this;
+                        // attach the scroll listener
+                        $('.body').one('scroll.bodyToucher', function() {
+
+                            // clear the focus
+                            $(_this).blur();
+                            $('.body').off('.bodyToucher');
+
+                        });
+
+                        // attach the blur clear listener
+                        $(_this).one('blur.bodyToucher', function() {
+                            $('.body').off('.bodyToucher');
+                        });
+                    });
+                }
+
                 // helps to fix a weird bug in safari
                 var psFix = function(event) {
                     $('body > .body').css('height', '');
