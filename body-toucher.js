@@ -80,7 +80,8 @@
                         left: 0,
                         right: 0,
                         bottom: 0,
-                        overflow: 'auto'
+                        overflow: 'auto',
+                        backgroundColor: $('body').css('backgroundColor')
                     },
                     $wrap  = $('<div class="body"></div>');
 
