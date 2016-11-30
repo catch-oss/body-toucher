@@ -74,16 +74,19 @@
             if (!$('body > .body').length) {
 
                 var scrollTop = $(window).scrollTop(),
+                    isFirefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1,
                     css = {
                         position: 'fixed',
                         top: 0,
                         left: 0,
                         right: 0,
                         bottom: 0,
-                        overflow: 'auto',
-                        backgroundColor: $('body').css('backgroundColor')
+                        overflow: 'auto'
                     },
                     $wrap  = $('<div class="body"></div>');
+
+                if(isFirefox)
+                    css.backgroundColor = $('body').css('backgroundColor');
 
                 var is_safari = navigator.userAgent.indexOf('Safari') != -1 && navigator.userAgent.indexOf('Chrome') == -1;
 
