@@ -2,7 +2,7 @@
  * Made awesome by AzT3k.
  */
 
- ;(function (root, factory) {
+;(function (root, factory) {
 
     // AMD. Register as an anonymous module depending on jQuery.
     if (typeof define === 'function' && define.amd) define(['jquery'], factory);
@@ -49,6 +49,9 @@
             };
 
         $.scrollElem = function(forScroll) {
+            // Always scroll the body this is hotjar
+            if($('body').hasClass('is-hotjar'))
+                return $('body');
 
             // is this for position or to move the scroll point
             forScroll = forScroll || false;
@@ -70,6 +73,10 @@
         }
 
         $.addBody = function() {
+            // Don't mess with the body if this is hotjar
+            if($('body').hasClass('is-hotjar'))
+                return;
+
             //devices that parse the viewport meta tag dont respect overflow hidden on body or html
             if (!$('body > .body').length) {
 
