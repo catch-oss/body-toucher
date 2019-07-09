@@ -21,6 +21,9 @@
 
     $(function() {
 
+        if(navigator.userAgent.indexOf('Hotjar') >= 0)
+            $('body').addClass('is-hotjar');
+
         var hasTouch = function() {
                 try {
                     document.createEvent("TouchEvent");
